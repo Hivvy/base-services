@@ -1,5 +1,2 @@
-import Server from "@/config/server";
-
-const server = new Server()
-
-server.start()
+import server from "@/config/server";
+server.start();

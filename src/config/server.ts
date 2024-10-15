@@ -38,4 +38,4 @@ class Server {
     }
 }
 
-export default Server;
+export default new Server();
