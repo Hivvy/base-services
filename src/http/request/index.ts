@@ -2,15 +2,18 @@ import Joi from "joi";
 import { Request, Response, NextFunction } from "express";
 
 class ValidationClass<T> {
-    private rules: Joi.ObjectSchema<T>;
+    private schema: Joi.ObjectSchema<T>;
 
-    constructor(rules: Joi.ObjectSchema<T>) {
-        this.rules = rules;
+    constructor(schema: Joi.ObjectSchema<T>) {
+        this.schema = schema;
+        this.validate = this.validate.bind(this);
     }
 
     validate(req: Request, res: Response, next: NextFunction): void {
         const data: T = req.body;
-        const result: Joi.ValidationResult<T> = this.rules.validate(data);
+        console.log(this.schema);
+        const result: Joi.ValidationResult<T> = this.schema.validate(data);
+        console.log(result);
         if (result.error) {
             res.status(400).send({
                 error: result.error.details

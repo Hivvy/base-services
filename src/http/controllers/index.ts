@@ -19,7 +19,7 @@ class Controller implements ControllerInterface {
     handleResponse(
         res: Response,
         message: string = "",
-        data: any[],
+        data: {} | any[] | null = null,
         status = 200
     ) {
         return res.status(status).send({
@@ -28,7 +28,7 @@ class Controller implements ControllerInterface {
         });
     }
 
-    handleErrorResponse(res: Response, message: string = "", status = 200) {
+    handleErrorResponse(res: Response, message: string = "", status = 400) {
         return res.status(status).send({ message, data: null });
     }
 }

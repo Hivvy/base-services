@@ -11,27 +11,28 @@ dotenv.config();
 class Server {
     public database;
     public cors;
-    public express;
+    public app;
     public port;
 
     constructor() {
         this.database = new MongoDB();
         this.cors = cors;
-        this.express = express();
+        this.app = express();
         this.port = process.env.PORT || 8800;
     }
 
     public async start(): Promise<void> {
         try {
             await this.database.connect();
-            this.express.use(this.cors);
-            this.express.listen(this.port);
-            this.express.use(router);
-            this.express.use(morgan("tiny"));
-            this.express.use(bodyParser.urlencoded({ extended: true }));
-            this.express.use(bodyParser.json());
+            this.app.use(this.cors);
+            this.app.use(morgan("tiny"));
+            this.app.use(express.urlencoded({ extended: true }));
+            this.app.use(express.json());
+            this.app.use("/v1", router);
 
-            logger.info("Server Start");
+            this.app.listen(this.port, () => {
+                logger.info("Server Start");
+            });
         } catch (error) {
             console.log(error);
         }
