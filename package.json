@@ -5,7 +5,7 @@
     "main": "app.js",
     "scripts": {
         "start": "node build/app.js",
-        "build": "tsc  &&  copyfiles -u 1 src/views/**/* build/",
+        "build": "tspc  &&  copyfiles -u 1 src/views/**/* build/",
         "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts"
     },
     "husky": {
@@ -30,8 +30,10 @@
         "husky": "^9.1.6",
         "nodemon": "^3.1.4",
         "ts-node": "^10.9.2",
+        "ts-patch": "^3.2.1",
         "tsconfig-paths": "^4.2.0",
-        "typescript": "^5.5.3"
+        "typescript": "^5.5.3",
+        "typescript-transform-paths": "^3.5.1"
     },
     "dependencies": {
         "bcrypt": "^5.1.1",
