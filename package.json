@@ -8,6 +8,12 @@
         "build": "tsc",
         "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts"
     },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm test",
+            "pre-push": "npm run lint"
+        }
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
