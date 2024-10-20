@@ -11,9 +11,8 @@ class ValidationClass<T> {
 
     validate(req: Request, res: Response, next: NextFunction): void {
         const data: T = req.body;
-        console.log(this.schema);
         const result: Joi.ValidationResult<T> = this.schema.validate(data);
-        console.log(result);
+
         if (result.error) {
             res.status(400).send({
                 error: result.error.details

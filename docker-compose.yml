@@ -1,0 +1,18 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8000:8000"
+        volumes:
+            - .:/var/www/scraply
+        environment:
+            DB_CONNECTION: ${DB_CONNECTION}
+            PORT: ${PORT}
+            TOKEN_DURATION: ${TOKEN_DURATION}
+            TOKEN_SECRET: ${TOKEN_SECRET}
+            MAIL_HOST: ${MAIL_HOST}
+            MAIL_PORT: ${MAIL_PORT}
+            MAIL_USERNAME: ${MAIL_USERNAME}
+            MAIL_PASSWORD: ${MAIL_PASSWORD}

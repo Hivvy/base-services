@@ -22,8 +22,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
+const helpers_1 = require("../helpers");
+const otp_1 = __importDefault(require("./otp"));
+const otp_mail_1 = __importDefault(require("@/mails/otp.mail"));
+const dayjs_1 = __importDefault(require("dayjs"));
 const userSchema = new mongoose_1.Schema({
     first_name: {
         type: String,
@@ -31,22 +38,17 @@ const userSchema = new mongoose_1.Schema({
     last_name: {
         type: String,
     },
-    country: {
-        type: mongoose_1.Schema.Types.ObjectId,
-        ref: "Country",
-    },
     email: {
         type: String,
+        unique: true,
+        required: true,
     },
     phone: {
         type: String,
-        required: true,
-        unique: true,
     },
     password: {
         type: String,
         required: true,
-        miniLenght: 6,
     },
     role: {
         type: String,
@@ -55,11 +57,11 @@ const userSchema = new mongoose_1.Schema({
         required: true,
     },
     email_verified_at: {
-        type: Date,
+        type: String,
         default: null,
     },
     phone_verified_at: {
-        type: Date,
+        type: String,
         default: null,
     },
     password_reset: {
@@ -82,6 +84,29 @@ const userSchema = new mongoose_1.Schema({
 userSchema.static("isEmailTaken", async function (payload) {
     const user = await this.findOne(payload);
     return !!user;
+});
+userSchema.method("validatePassword", function (password) {
+    const hashedPassword = this.password;
+    return (0, helpers_1.compareBcryptPassword)(password, hashedPassword);
+});
+userSchema.method("createOtp", async function () {
+    const otp = await otp_1.default.createOtp(this.id);
+    new otp_mail_1.default(this.email, otp.code);
+});
+userSchema.method("createToken", async function () {
+    const payload = {
+        id: this.id,
+    };
+    return (0, helpers_1.generateTokenFromPayload)(payload);
+});
+userSchema.method("validateOtp", async function (code) {
+    // Validate the OTP
+    await otp_1.default.validateOtp(this.id, code);
+    // Check if the email is not verified yet
+    if (!this.email_verified_at) {
+        // Update the emailVerifiedAt field using updateOne
+        await User.updateOne({ _id: this.id }, { email_verified_at: (0, dayjs_1.default)().format() });
+    }
 });
 const User = mongoose_1.default.model("users", userSchema);
 exports.default = User;

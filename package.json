@@ -2,29 +2,31 @@
     "name": "scraply",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "app.js",
     "scripts": {
-        "start": "node build/index.js",
-        "build": "tsc",
+        "start": "node build/app.js",
+        "build": "tsc  &&  copyfiles -u 1 src/views/**/* build/",
         "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/app.ts"
     },
     "husky": {
         "hooks": {
             "pre-commit": "npm test",
-            "pre-push": "npm run lint"
+            "pre-push": "npm run build"
         }
     },
     "keywords": [],
-    "author": "",
+    "author": "Scarply",
     "license": "ISC",
     "devDependencies": {
         "@types/bcrypt": "^5.0.2",
         "@types/cors": "^2.8.17",
+        "@types/ejs": "^3.1.5",
         "@types/express": "^4.17.21",
         "@types/jsonwebtoken": "^9.0.7",
         "@types/morgan": "^1.9.9",
         "@types/node": "^20.14.10",
         "@types/nodemailer": "^6.4.16",
+        "copyfiles": "^2.4.1",
         "husky": "^9.1.6",
         "nodemon": "^3.1.4",
         "ts-node": "^10.9.2",
@@ -41,6 +43,7 @@
         "express": "^4.19.2",
         "joi": "^17.13.3",
         "jsonwebtoken": "^9.0.2",
+        "module-alias": "^2.2.3",
         "mongoose": "^8.4.5",
         "morgan": "^1.10.0",
         "nodemailer": "^6.9.15",

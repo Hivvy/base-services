@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import router from "@/routes";
 import logger from "@/config/logger";
 import morgan from "morgan";
-import bodyParser from "body-parser";
+
 dotenv.config();
 
 class Server {
