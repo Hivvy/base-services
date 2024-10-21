@@ -43,7 +43,7 @@ class AuthMiddleWare {
 
             next();
         } catch (error: any) {
-            res.status(403).send({
+            res.status(401).send({
                 message: error.message,
             });
         }

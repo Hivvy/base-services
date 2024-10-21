@@ -11,4 +11,6 @@ router.post("/register", RegisterRequest.validate, AuthController.register);
 router.post("/otp/send", OtpRequest.validate, AuthController.resendOtp);
 router.post("/otp/verify", VerifyOtpRequest.validate, AuthController.verifyOtp);
 
+
+
 export default router;

@@ -15,7 +15,7 @@ class ValidationClass<T> {
 
         if (result.error) {
             res.status(400).send({
-                error: result.error.details
+                message: result.error.details
                     .map((err) => err.message)
                     .join(", "),
             });
