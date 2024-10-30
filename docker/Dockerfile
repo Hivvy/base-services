@@ -29,4 +29,7 @@ ENV MAIL_PASSWORD="db44c762c452b8"
 
 EXPOSE 8000 
 
+# List the contents of the build directory for debugging
+RUN ls -la /var/www/html/build
+
 ENTRYPOINT ["node", "build/app.js"]
