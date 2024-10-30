@@ -6,7 +6,7 @@ RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
 
 # Copy package.json and package-lock.json first for better caching
-COPY package*.json ./
+COPY ../package.json ./
 
 # Install app dependencies
 RUN npm install
