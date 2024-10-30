@@ -1,11 +1,21 @@
 FROM node:20-alpine
 
+# Create app directory
 RUN mkdir -p /var/www/html
-WORKDIR /var/www/html
-COPY . .
-RUN npm install
-RUN npm run build
 
+WORKDIR /var/www/html
+
+# Copy package.json and package-lock.json first for better caching
+COPY package*.json ./
+
+# Install app dependencies
+RUN npm install
+
+# Copy the rest of your application code
+COPY . .
+
+# Build the application
+RUN npm run build
 
 # Set environment variables
 ENV DB_CONNECTION="mongodb+srv://Ayobami:KDrhX05TmMl3OrGa@cluster0.flpzloz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
