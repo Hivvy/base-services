@@ -2,7 +2,7 @@ FROM node:20-alpine
 
 RUN mkdir -p /var/www/html
 WORKDIR /var/www/html
-COPY ../ .
+COPY . .
 RUN npm install
 RUN npm run build
 
@@ -19,4 +19,4 @@ ENV MAIL_PASSWORD="db44c762c452b8"
 
 EXPOSE 8000 
 
-ENTRYPOINT ["node", "build/app.js"]
+CMD ["npm", "start"]
