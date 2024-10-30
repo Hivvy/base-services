@@ -19,4 +19,4 @@ ENV MAIL_PASSWORD="db44c762c452b8"
 
 EXPOSE 8000 
 
-CMD ["npm", "dev"]
+CMD ["npm", "start"]
