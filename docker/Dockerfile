@@ -1,21 +1,11 @@
 FROM node:20-alpine
 
-# Create app directory
 RUN mkdir -p /var/www/html
-
 WORKDIR /var/www/html
-
-# Copy package.json and package-lock.json first for better caching
-COPY ../package.json ./
-
-# Install app dependencies
+COPY ./ .
 RUN npm install
-
-# Copy the rest of your application code
-COPY . .
-
-# Build the application
 RUN npm run build
+
 
 # Set environment variables
 ENV DB_CONNECTION="mongodb+srv://Ayobami:KDrhX05TmMl3OrGa@cluster0.flpzloz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
@@ -28,8 +18,5 @@ ENV MAIL_USERNAME="a62410a30b6607"
 ENV MAIL_PASSWORD="db44c762c452b8"
 
 EXPOSE 8000 
-
-# Add debugging output to check the contents of the build directory
-RUN echo "Contents of /var/www/html/build:" && ls -la /var/www/html/build
 
 ENTRYPOINT ["node", "build/app.js"]
