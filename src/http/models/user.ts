@@ -71,10 +71,10 @@ const userSchema = new Schema(
         toJSON: {
             virtuals: true,
             transform: function (doc, ret) {
-                delete ret._id;
-                delete ret.__v;
-                delete ret.password_reset;
-                delete ret.password;
+                delete (ret as any)._id;
+                delete (ret as any).__v;
+                delete (ret as any).password_reset;
+                delete (ret as any).password;
                 return ret;
             },
         },
