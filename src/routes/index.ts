@@ -1,5 +1,6 @@
 import express from "express";
 import auth from "@/routes/auth";
+import wallet from "@/routes/wallet";
 
 const router = express.Router();
 
@@ -7,6 +8,10 @@ const defaultIRoute = [
     {
         path: "/auth",
         route: auth,
+    },
+    {
+        path: "/wallet",
+        route: wallet,
     },
 ];
 
