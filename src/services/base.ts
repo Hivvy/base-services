@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import USDCAbi from "../../usdc.json";
+import USDCAbi from "../usdc.json";
 import { decrypt, encrypt } from "../config/encrypt";
 
 class Base {

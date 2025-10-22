@@ -1,5 +1,5 @@
 import { WebSocketProvider, Contract, formatUnits } from "ethers";
-import USDCAbi from "../../usdc.json";
+import USDCAbi from "../usdc.json";
 import crypto from "crypto";
 import axios from "axios";
 

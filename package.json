@@ -1,5 +1,5 @@
 {
-    "name": "scraply",
+    "name": "base-service",
     "version": "1.0.0",
     "description": "",
     "main": "app.js",
@@ -15,7 +15,7 @@
         }
     },
     "keywords": [],
-    "author": "Scarply",
+    "author": "Hivvy",
     "license": "ISC",
     "devDependencies": {
         "@types/bcryptjs": "^2.4.6",
