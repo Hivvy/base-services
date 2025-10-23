@@ -11,6 +11,7 @@ class WalletContoller extends Controller {
         this.walletRepository = WalletRepository;
         this.createWallet = this.createWallet.bind(this);
         this.getBalance = this.getBalance.bind(this);
+        this.sendToken = this.sendToken.bind(this);
     }
 
     async createWallet(req: Request, res: Response) {

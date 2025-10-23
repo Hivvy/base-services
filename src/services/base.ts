@@ -151,11 +151,11 @@ class Base {
                     amount
                 );
 
-                console.log("Sending base");
+                console.log("Sending eth");
 
                 await this.sendBase(wallet.address, estimate.price);
 
-                console.log("Base sent");
+                console.log("Eth sent");
             }
 
             const contract = new ethers.Contract(
