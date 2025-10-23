@@ -172,6 +172,8 @@ class Base {
 
             await transaction.wait();
 
+            console.log(transaction);
+
             return transaction;
         } catch (error) {
             console.error("Error sending token:", error);

@@ -24,7 +24,9 @@ class WebSocketListener {
 
     async connect() {
         if (!this.secretKey || !this.webhookUrl)
-            throw new Error("Missing SECRET_KEY or WEBHOOK_URL in environment variables");
+            throw new Error(
+                "Missing SECRET_KEY or WEBHOOK_URL in environment variables"
+            );
 
         // Clean up old connection
         if (this.provider) {
@@ -38,7 +40,11 @@ class WebSocketListener {
 
         // Create new provider
         this.provider = new WebSocketProvider(this.providerUrl);
-        this.contract = new Contract(this.contractAddress, USDCAbi, this.provider);
+        this.contract = new Contract(
+            this.contractAddress,
+            USDCAbi,
+            this.provider
+        );
 
         // Access internal WebSocket
         const ws = this.provider?.websocket as WebSocket;
@@ -78,20 +84,25 @@ class WebSocketListener {
                 amount,
             };
 
-            console.log("💸 Transfer detected:", transaction);
-
             const payloadString = JSON.stringify(transaction);
-            const hash = crypto.createHmac("sha256", this.secretKey)
-                               .update(payloadString)
-                               .digest("hex");
+            const hash = crypto
+                .createHmac("sha256", this.secretKey)
+                .update(payloadString)
+                .digest("hex");
 
             try {
                 await axios.post(this.webhookUrl, transaction, {
                     headers: { "X-Secret": hash },
                 });
-                console.log("📬 Webhook sent for transaction:", transaction.hash);
+                console.log(
+                    "📬 Webhook sent for transaction:",
+                    transaction.hash
+                );
             } catch (error: any) {
-                console.error("❌ Error sending webhook:", error?.message || error);
+                console.error(
+                    "❌ Error sending webhook:",
+                    error?.message || error
+                );
             }
         });
     }
