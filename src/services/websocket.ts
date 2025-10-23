@@ -94,10 +94,6 @@ class WebSocketListener {
                 await axios.post(this.webhookUrl, transaction, {
                     headers: { "X-Secret": hash },
                 });
-                console.log(
-                    "📬 Webhook sent for transaction:",
-                    transaction.hash
-                );
             } catch (error: any) {
                 console.error(
                     "❌ Error sending webhook:",

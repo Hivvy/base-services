@@ -43,6 +43,7 @@ class WalletContoller extends Controller {
 
     async sendToken(req: Request, res: Response) {
         try {
+            console.log(req.body);
             const response = await this.walletRepository.sendToken(
                 req.body.paraphrase,
                 req.body.recipientAddress,
