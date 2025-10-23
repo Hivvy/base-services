@@ -51,6 +51,7 @@ class WalletContoller extends Controller {
             );
             return this.handleResponse(res, "Sucessfully sent token", response);
         } catch (error: any) {
+            console.log(error);
             return this.handleErrorResponse(res, error.message);
         }
     }
