@@ -179,9 +179,8 @@ class Base {
             console.log(transaction);
 
             return transaction;
-        } catch (error) {
+        } catch (error: any) {
             console.error("Error sending token:", error);
-
             throw error;
         }
     }
@@ -213,7 +212,7 @@ class Base {
 
             return transaction;
         } catch (error) {
-            console.error("Error sending Celo:", error);
+            console.error("Error sending base:", error);
             throw error;
         }
     }
