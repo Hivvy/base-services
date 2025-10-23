@@ -4,7 +4,9 @@ import WalletRepository, {
     WalletRepositoryInterface,
 } from "../repository/wallet";
 
-class WalletContoller extends Controller {
+type Environment = "production" | "sandbox";
+
+class WalletController extends Controller {
     private walletRepository: WalletRepositoryInterface;
     constructor() {
         super();
@@ -16,7 +18,10 @@ class WalletContoller extends Controller {
 
     async createWallet(req: Request, res: Response) {
         try {
-            const response = await this.walletRepository.createWallet();
+            const environment = (req as any).environment as Environment;
+            const response = await this.walletRepository.createWallet(
+                environment
+            );
             return this.handleResponse(
                 res,
                 "Sucessfully created wallet",
@@ -29,8 +34,10 @@ class WalletContoller extends Controller {
 
     async getBalance(req: Request, res: Response) {
         try {
+            const environment = (req as any).environment as Environment;
             const response = await this.walletRepository.getBalance(
-                req.body.address
+                req.body.address,
+                environment
             );
             return this.handleResponse(
                 res,
@@ -44,11 +51,12 @@ class WalletContoller extends Controller {
 
     async sendToken(req: Request, res: Response) {
         try {
-            console.log(req.body);
+            const environment = (req as any).environment as Environment;
             const response = await this.walletRepository.sendToken(
                 req.body.paraphrase,
                 req.body.recipientAddress,
-                req.body.amount
+                req.body.amount,
+                environment
             );
             return this.handleResponse(res, "Sucessfully sent token", response);
         } catch (error: any) {
@@ -58,4 +66,4 @@ class WalletContoller extends Controller {
     }
 }
 
-export default new WalletContoller();
+export default new WalletController();

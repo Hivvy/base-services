@@ -1,17 +1,17 @@
 import express from "express";
-import WalletController from "@/http/controllers/wallet.controller";
+import walletController from "@/http/controllers/wallet.controller";
 import HeaderMiddleWare from "@/middleware/header.middleware";
 const router = express.Router();
 
 router.post(
     "/create-wallet",
     HeaderMiddleWare.check,
-    WalletController.createWallet
+    walletController.createWallet
 );
 router.post(
     "/get-balance",
     HeaderMiddleWare.check,
-    WalletController.getBalance
+    walletController.getBalance
 );
-router.post("/send-token", HeaderMiddleWare.check, WalletController.sendToken);
+router.post("/send-token", HeaderMiddleWare.check, walletController.sendToken);
 export default router;
