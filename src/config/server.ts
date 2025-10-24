@@ -36,8 +36,8 @@ class Server {
             });
 
             const listener = new WebSocketListener(
-                "wss://base-sepolia.g.alchemy.com/v2/gwD__x-Lc4m7lYw1CJxwxDk6tlXwhm2J",
-                "0x036CbD53842c5426634e7929541eC2318f3dCF7e"
+                process.env.WS_BASE_BASEURL ?? "",
+                "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
             );
             listener.connect().catch((error: any) => {
                 console.error("Error connecting to WebSocket:", error);
