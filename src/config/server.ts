@@ -35,13 +35,13 @@ class Server {
                 logger.info("Server Start");
             });
 
-            const listener = new WebSocketListener(
-                process.env.WS_BASE_BASEURL ?? "",
-                "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
-            );
-            listener.connect().catch((error: any) => {
-                console.error("Error connecting to WebSocket:", error);
-            });
+            // const listener = new WebSocketListener(
+            //     process.env.WS_BASE_BASEURL ?? "",
+            //     "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+            // );
+            // listener.connect().catch((error: any) => {
+            //     console.error("Error connecting to WebSocket:", error);
+            // });
         } catch (error) {
             console.log(error);
         }
