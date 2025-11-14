@@ -4,7 +4,7 @@ services:
             context: .
             dockerfile: docker/Dockerfile
         ports:
-            - "8000:8000"
+            - "8500:8000"
         environment:
             DB_CONNECTION: ${DB_CONNECTION}
             PORT: ${PORT}
@@ -14,3 +14,8 @@ services:
             MAIL_PORT: ${MAIL_PORT}
             MAIL_USERNAME: ${MAIL_USERNAME}
             MAIL_PASSWORD: ${MAIL_PASSWORD}
+            SECRET_KEY: ${SECRET_KEY}
+            CENTERAL_PARAPHRASE: ${CENTERAL_PARAPHRASE}
+            CENTERAL_ADDRESS: ${CENTERAL_ADDRESS}
+            WEBHOOK_URL: ${WEBHOOK_URL}
+            WS_BASE_BASEURL: ${WS_BASE_BASEURL}
