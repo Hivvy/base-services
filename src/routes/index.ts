@@ -6,10 +6,6 @@ const router = express.Router();
 
 const defaultIRoute = [
     {
-        path: "/auth",
-        route: auth,
-    },
-    {
         path: "/wallet",
         route: wallet,
     },

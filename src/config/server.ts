@@ -29,6 +29,11 @@ class Server {
             this.app.use(morgan("tiny"));
             this.app.use(express.urlencoded({ extended: true }));
             this.app.use(express.json());
+            this.app.use("/", (req, res) => {
+                return res.status(200).send({
+                    message: "Base service is alive",
+                });
+            });
             this.app.use("/v1", router);
 
             this.app.listen(this.port, () => {
