@@ -30,7 +30,9 @@ class Server {
             this.app.use(express.urlencoded({ extended: true }));
             this.app.use(express.json());
             this.app.get("/v1", (req, res) => {
-                return res.status(200).send("Base service is alive");
+                return res.status(200).send({
+                    message: "Base succesfully ping",
+                });
             });
             this.app.use("/v1", router);
 
